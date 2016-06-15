@@ -88,7 +88,7 @@ public class UserBusiness {
 		return u;
 	}
 
-	public void updateUser(User user) {
+	public User updateUser(User user) {
 
 		for (int i = 0; i < fora.getUsers().size(); i++) {
 			User u = fora.getUsers().get(i);
@@ -97,9 +97,10 @@ public class UserBusiness {
 				// replacing
 				fora.getUsers().remove(i);
 				fora.getUsers().add(i, user);
+				return user;
 			}
 		}
-
+		return null;
 	}
 
 	public void deleteUser(User user) {

@@ -1,11 +1,10 @@
 package io.robusta.domain;
 
-import io.robusta.business.EtagBusiness;
-import io.robusta.business.UserBusiness;
-
 import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
+
+import io.robusta.business.EtagBusiness;
 
 @XmlRootElement
 public class User implements Serializable{
@@ -18,6 +17,11 @@ public class User implements Serializable{
 	String name;
 
 	boolean male = true;
+
+	public void setMale(boolean male) {
+		this.male = male;
+	}
+
 
 	int version=1;
 	protected boolean admin = false;

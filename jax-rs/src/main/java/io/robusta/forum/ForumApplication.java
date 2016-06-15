@@ -21,6 +21,7 @@ public class ForumApplication extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> s = new HashSet<>();
         s.add(UsersApi.class);
+        s.add(TopicsApi.class);
         return s;
     }
 

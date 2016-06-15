@@ -10,7 +10,7 @@ angular.module("forum", [])
 
     })
     
-    .controller("ForumController", function ($scope, $http, topicService, userService) {
+    .controller("ForumController", function ($scope, $http, topicService, userService, apiService) {
 
         $scope.users = userService.getUsers();
 
@@ -19,7 +19,7 @@ angular.module("forum", [])
             user: ''
         };
 
-        $http.get("http://localhost:3000/api/topics/")
+        $http.get(apiService.root+"topics/")
             .then(function (response) {     //Penser au fait que cet appel sera asynchrone, donc recuperer dans le then.
                 console.log(response);
                 /*console.log(response.data[0]);*/
@@ -93,7 +93,7 @@ angular.module("forum", [])
     }).factory("apiService", function(){
 
         var service ={
-            root : "http://localhost:3000/api/"
+            root : "/jax-rs/forum/"
         };
         return service;
     })
