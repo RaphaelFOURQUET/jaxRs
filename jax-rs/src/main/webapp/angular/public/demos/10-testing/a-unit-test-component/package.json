@@ -1,0 +1,14 @@
+{
+  "name": "simple-unit-test-with-angular",
+  "version": "0.0.0",
+  "private": true,
+
+  "devDependencies": {
+
+    "karma": "",
+    "karma-chrome-launcher": "",
+    "karma-jasmine": "",
+    "karma-firefox-launcher": ""
+  },
+  "dependencies": {"angular":"1.5"}
+}

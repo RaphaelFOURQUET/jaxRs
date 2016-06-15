@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonJs",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true
+  },
+  "files": [
+    "./src/**/.ts",
+    "./typings/browser.d.ts",
+    "./src/my-declarations.d.ts"
+  ]
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- The ng-app is related to a module -->
+<html ng-app="demo">
+<head>
+    <title>Checking Unit Testing with Component</title>
+
+    <script type="text/javascript" src="../../libs/angular.min.js"></script>
+
+
+</head>
+<!-- The controller is found in the spotted module -->
+<body ng-controller="AppCtrl">
+
+<div>
+    Testing :
+    <users-component users="users"></users-component>
+
+
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+
+
+    function UserCtrl(){
+
+        console.log('Component users at the start :', this.users);
+        this.sortedUsers = this.users.sort();
+    }
+
+
+
+    angular.module("demo", [])
+            .controller('AppCtrl', function($scope){
+                $scope.users = ['John', 'Jim', 'Albert', 'Luc', 'Sheldon'];
+            })
+
+            .component("usersComponent", {  // returns an object, not a function
+
+                template: '<ul><li ng-repeat = "user in $ctrl.sortedUsers">{{user}}</li></ul>',
+                controller : UserCtrl,
+                bindings:{
+                    users : '='
+                }
+
+            })
+
+
+
+</script>
+</html>

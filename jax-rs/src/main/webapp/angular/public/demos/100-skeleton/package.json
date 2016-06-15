@@ -1,0 +1,42 @@
+{
+  "name": "browserify-ts",
+  "version": "0.0.1",
+  "description": "Bootstrap for typescript able to require some html text",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {
+    "browserify": "13",
+    "del": "2",
+    "exorcist": "0.4",
+    "gulp": "3",
+    "gulp-connect": "2",
+    "gulp-uglify": "1",
+    "vinyl-paths": "2",
+    "vinyl-source-stream": "1",
+    "watchify": "3",
+    "stringify":"",
+    "tsify":"0.14",
+    "browserify-hmr":""
+  },
+  "browserify": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robusta-code/rc-movable"
+  },
+  "keywords": [
+    "Angular",
+    "movable",
+    "drag-n-drop",
+    "touch",
+    "directive",
+    "zoom",
+    "Robusta-Code"
+  ],
+  "author": "Nicolas Zozol <nz@robusta.io> (http://www.robusta.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robusta-code/rc-movable/issues"
+  },
+  "homepage": "https://github.com/robusta-code/rc-movable"
+}

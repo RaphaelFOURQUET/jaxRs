@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="forum">
+<head>
+    <meta charset="UTF-8">
+    <title>Fora by Robusta Code</title>
+    <link rel="stylesheet" type="text/css" href="../css/fora.css"/>
+    <title>Forum</title>
+
+    <script type="text/javascript" src="../javascripts/libs/angular.min.js"></script>
+    <script type="text/javascript" src="../javascripts/mock-data.js"></script>
+    <script type="text/javascript" src="forum.js"></script>
+
+    <style>
+        .like{
+            color : green;
+        }
+        .dislike{
+             color: red;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<section class="users" ng-controller="UserController">
+    <ul>
+        <li ng-repeat="user in users">{{user.id}} : {{user.name}} ( {{user.email}} )</li>
+    </ul>
+</section>
+
+<section class="forum" ng-controller="ForumController">
+    <div ng-repeat="topic in topics">
+        <h2>{{topic.title}}</h2>
+        {{topic.content !== "" && topic.content !== undefined  ? topic.user.name +' says : "'+ topic.content+'"' :  ''}}
+        <!--{{topic.user.name}} says : "{{topic.content}}"-->
+        <div ng-repeat="comment in topic.comments">
+            <br/>
+            {{formatCommenterName(comment.user.name)}} says :
+            <!--{{isUndefined(comment.user.name) ? 'Anonymous' : comment.user.name}} says :-->
+            <!--comment.score ? comment.score>0 ? 'like' : 'dislike' : ''-->
+            <div ng-class="getScoreClass(comment.score)">
+                "{{comment.content}}"
+                <img src="../images/like.png" ng-click="up(comment)" width="15"/>
+                <img src="../images/dislike.png" ng-click="down(comment)" width="15"/>
+                {{comment.score}}
+            </div>
+           <!-- {{comment.user.name}} says : "{{comment.content}}"-->
+        </div>
+
+        <br/>
+        <!--<form>
+            <select ng-model="commentUser" ng-options="user.name for user in users"></select>
+            <input type="text" required="required"/>
+            <button ng-click="createTopic(topic.id, user.id)">Ok</button>
+        </form>-->
+
+    </div>
+
+    <form>
+        <select ng-model="model.topicUser" ng-options="user.name for user in users"></select>
+        <input  ng-model="model.topicTitle" type="text" required="required"/>
+        <button ng-click="createTopic()">Create Topic</button>
+    </form>
+
+</section>
+
+</body>
+
+
+</html>

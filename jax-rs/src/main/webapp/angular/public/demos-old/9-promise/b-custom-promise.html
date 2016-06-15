@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!-- The ng-app is related to a module -->
+<html ng-app="demo">
+<head>
+    <title>Fora by Robusta Code</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+
+    <script type="text/javascript" src="../../javascripts/libs/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="../../javascripts/libs/angular.min.js"></script>
+
+</head>
+<!-- The controller is found in the spotted module -->
+<body ng-controller="AppCtrl">
+
+<button ng-click="load()">LOAD !!!!</button>
+
+
+<ul>
+    <li ng-repeat="user in users">{{user.name}}</li>
+</ul>
+
+<button ng-click="admins()">Only admins</button>
+
+<ul>
+    <li ng-repeat="user in admins">{{user.name}}</li>
+</ul>
+
+
+</body>
+
+<script type="text/javascript">
+
+    /**
+     * Goals : use promises with the best design
+     * - compare `userService.admins()` with `userService.getSimplyAdmins()`
+     */
+
+
+    angular.module("demo", [])
+            .controller("AppCtrl",function ($scope, userService) {
+
+
+                $scope.users = []
+                $scope.admins = []
+
+                $scope.load = function () {
+                    userService.load()
+                            .success(function (users, status, headers, config) {
+                                console.log("found ", users)
+                                $scope.message = ""
+                                $scope.users = users
+                            })
+                            .error(function (users, status, headers, config) {
+                                $scope.message = "Fail"
+                            })
+
+                }
+
+                $scope.admins = function () {
+
+                    userService.getAdminsSimply()
+                            .then(function (admins) {
+                                console.log("in then", admins)
+                                $scope.admins = admins
+                            },
+                            function (error) {
+                                alert('failed:' + error)
+                            })
+
+                }
+
+            }).factory("userService", function ($http, $q) {
+
+                var url = "/api/users/all";
+
+                return {
+                    load: function () {
+                        return $http.get(url);
+                    },
+                    admins: function () {
+                        var deffered = $q.defer();
+
+                        $http.get(url)
+                                .success(function (users, status, headers, config) {
+
+                                    var result = []
+                                    $.each(users, function (i, user) {
+                                        if (user.admin) {
+                                            result.push(user)
+                                        }
+                                    })
+                                    deffered.resolve(result);
+                                }).error(function (data, status, headers, config) {
+                                    deffered.reject('some error occured :' + status);
+                                })
+                        return deffered.promise;
+                    },
+
+                    getAdminsSimply : function(){
+
+                        return $http.get(url).then(function(response){
+                            var result = []
+                            var users = response.data;
+                            $.each(users, function (i, user) {
+                                if (user.admin) {
+                                    result.push(user)
+                                }
+                            })
+                            return result;
+                        })
+
+                    }
+
+                }
+            })
+
+
+</script>
+</html>
