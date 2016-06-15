@@ -27,7 +27,6 @@ public class User implements Serializable{
 	}
 
 	public User(Long id, String name) {
-		System.out.println(id+" "+name);
 		this.id = id;
 		this.name = name;
 		this.email = name.toLowerCase()+"@robusta.io";
