@@ -15,7 +15,7 @@ angular.module("forum", [])
         $scope.users = userService.getUsers();
 
         $scope.data = {
-            content: "",
+            //content: "",
             user: ''
         };
 
@@ -49,15 +49,15 @@ angular.module("forum", [])
 
         };
         $scope.createTopic = function () {
-            console.log("topicUser");
-            console.log($scope.model.topicUser);
-            console.log("topicTitle");
-            console.log($scope.model.topicTitle);
+//            console.log("topicUser");
+//            console.log($scope.model.topicUser);
+//            console.log("topicTitle");
+//            console.log($scope.model.topicTitle);
 
             $scope.data.user = $scope.model.topicUser;
             $scope.data.title = $scope.model.topicTitle;
 
-            $http.post("http://localhost:3000/api/topics/", $scope.data)
+            $http.post(apiService.root+"topics/", $scope.data)
                 .then(function (response) {
                     $scope.topics.push(response.data);
                 })

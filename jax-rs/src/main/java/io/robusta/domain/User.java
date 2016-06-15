@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import io.robusta.business.EtagBusiness;
 
 @XmlRootElement
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable{
 
 

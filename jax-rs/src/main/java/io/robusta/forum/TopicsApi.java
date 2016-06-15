@@ -28,8 +28,13 @@ public class TopicsApi {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Topic generateTopic(Topic topic) {
-		TopicBusiness topicBusiness = new TopicBusiness();
-		return topicBusiness.createTopic(topic);
+//		TopicBusiness topicBusiness = new TopicBusiness();
+//		return topicBusiness.createTopic(topic);
+		
+		System.out.println("title : "+topic.getTitle());
+		System.out.println("name : "+topic.getUser().getName());
+		
+		return topic;
 	}
 
 }

@@ -1,10 +1,16 @@
 package io.robusta.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by Nicolas
  * Date: 15/02/14
  * Time: 21:26
  */
+@XmlRootElement
+//@JsonIgnoreProperties(ignoreUnknown = true)	//Dans User
 public class Admin extends User {
 
 	String statement;
