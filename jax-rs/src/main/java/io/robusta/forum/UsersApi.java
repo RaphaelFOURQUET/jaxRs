@@ -5,11 +5,16 @@
  */
 package io.robusta.forum;
 
-import io.robusta.ForaDataSource;
-import io.robusta.domain.User;
 import java.util.List;
+
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+
+import io.robusta.ForaDataSource;
+import io.robusta.business.UserBusiness;
+import io.robusta.domain.User;
 
 /**
  *
@@ -19,7 +24,17 @@ import javax.ws.rs.Path;
 public class UsersApi {
     
     @GET
+    //@Produces(MediaType.APPLICATION_JSON)
     public List<User> getUsers() {
         return ForaDataSource.getInstance().getUsers();
+    }
+    
+    @DELETE
+    @Path("{id}")
+    public String deleteUser(@PathParam("id") long userId) {
+    	UserBusiness userBusiness = new UserBusiness();
+    	User user = userBusiness.findById(userId);
+    	userBusiness.deleteUser(user);
+    	return "deleted";
     }
 }

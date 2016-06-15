@@ -26,8 +26,8 @@ public class UserBusiness {
 		return null;
 
 	}
-	
-	
+
+
 	public User findByName(String name) {
 
 		for (User u : fora.getUsers()) {
@@ -39,7 +39,7 @@ public class UserBusiness {
 		return null;
 
 	}
-	
+
 	public User findById(Long id) {
 
 		for (User u : fora.getUsers()) {
@@ -64,22 +64,22 @@ public class UserBusiness {
 	public User createUser(String name){
 		return createUser(name+"@rra.io", name, false, true);
 	}
-	
+
 	public User createUser(String email, String name, boolean admin, boolean male) {
-		
+
 		User u;
 		if (admin){
 			u = new Admin();
 		}else{
 			u = new User();
 		}
-		
+
 		u.setEmail(email);
 		u.setName(name);
 		if (!male){
 			u.setFemale();
 		}
-		
+
 
 		u.setId((long) fora.getUsers().size());
 		fora.getUsers().add(u);
@@ -111,13 +111,15 @@ public class UserBusiness {
 		}
 
 		for (Comment comment : ForaDataSource.getInstance().getComments()) {
-			if (comment.getUser().equals(user)) {
-				comment.setUser(null);
-				comment.setAnonymous(true);
+			if(!comment.isAnonymous()) {
+				if (comment.getUser().equals(user)) {
+					comment.setUser(null);
+					comment.setAnonymous(true);
+				}
 			}
 		}
 	}
-	
-	
+
+
 
 }
