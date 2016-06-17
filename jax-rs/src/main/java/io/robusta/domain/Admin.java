@@ -2,8 +2,6 @@ package io.robusta.domain;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 /**
  * Created by Nicolas
  * Date: 15/02/14
